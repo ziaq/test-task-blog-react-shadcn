@@ -16,31 +16,36 @@ import {
   TabsContent,
 } from "@/components/ui/tabs"
 
+enum AuthTab {
+  Login = "login",
+  Register = "register",
+}
+
 export const AuthDialog = () => {
   const { accessToken } = useAuthStore();
 
-  const [tab, setTab] = useState<"login" | "register">("login")
+  const [tab, setTab] = useState<AuthTab>(AuthTab.Login)
 
   return (
     <Dialog open={!accessToken}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="max-w-md" hideClose>
         <DialogHeader>
           <DialogTitle className="text-center">
-            {tab === "login" ? "Login to your account" : "Create an account"}
+            {tab === AuthTab.Login ? "Login to your account" : "Create an account"}
           </DialogTitle>
         </DialogHeader>
 
-        <Tabs value={tab} onValueChange={(value) => setTab(value as "login" | "register")}>
+        <Tabs value={tab} onValueChange={(value) => setTab(value as AuthTab)}>
           <TabsList className="grid w-full grid-cols-2 mb-4">
             <TabsTrigger value="login">Login</TabsTrigger>
             <TabsTrigger value="register">Register</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="login">
+          <TabsContent value={AuthTab.Login}>
             <LoginForm />
           </TabsContent>
 
-          <TabsContent value="register">
+          <TabsContent value={AuthTab.Register}>
             <RegisterForm />
           </TabsContent>
         </Tabs>
