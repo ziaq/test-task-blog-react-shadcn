@@ -1,18 +1,22 @@
-import type { User } from "../types"
+import { UserResponseDto } from "@/features/profile/dto/user-response.schema"
 
 type ContactsProps = {
-  user: User
+  user: UserResponseDto
 }
 
 export const Contacts = ({ user }: ContactsProps) => {
   return (
-    <div className="space-y-1 text-sm text-muted-foreground">
-      <p>
-        <span className="font-medium text-foreground">Email:</span> {user.email}
-      </p>
-      <p>
-        <span className="font-medium text-foreground">Телефон:</span> {user.phone}
-      </p>
-    </div>
+    <ul className="text-sm space-y-1">
+      {user.phone && <li>📞 {user.phone}</li>}
+      {user.birthDate && (
+        <li>
+          🎂 {new Date(user.birthDate).toLocaleDateString("ru-RU", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </li>
+      )}
+    </ul>
   )
 }

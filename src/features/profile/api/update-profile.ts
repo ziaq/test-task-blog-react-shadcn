@@ -1,20 +1,13 @@
-import type { User } from "../types"
+import { apiFetchWithAuth } from "@/lib/api/api-fetch-with-auth"
+import { userResponseSchema, UserResponseDto } from "@/features/profile/dto/user-response.schema"
+import { UpdateUserDto } from "@/features/profile/dto/update-user.schema"
 
-export type UpdateProfileDto = Partial<Omit<User, "id" | "avatar">>
-
-export async function updateProfile(data: UpdateProfileDto): Promise<User> {
-  const res = await fetch("/api/profile", {
+export async function updateProfile(input: UpdateUserDto): Promise<UserResponseDto> {
+  const response = await apiFetchWithAuth("/profile", {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-    },
-    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(input),
   })
 
-  if (!res.ok) {
-    throw new Error("Ошибка при обновлении профиля")
-  }
-
-  return res.json()
+  return userResponseSchema.parse(response)
 }

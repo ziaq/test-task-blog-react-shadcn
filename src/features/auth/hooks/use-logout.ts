@@ -4,14 +4,13 @@ import { useAuthStore } from "@/store/auth-store"
 import { cancelScheduleTokenRefresh } from "@/lib/auth/schedule-token-refresh"
 
 export const useLogout = () => {
-  const { clear, openAuthModal } = useAuthStore.getState()
+  const { deleteAccessToken } = useAuthStore.getState()
 
   return useMutation({
     mutationFn: logout,
     onSuccess: () => {
       cancelScheduleTokenRefresh()
-      clear()
-      openAuthModal()
+      deleteAccessToken()
     },
   })
 }

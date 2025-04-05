@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { loginSchema, LoginDto } from "@/features/auth/dto/login.schema"
 import { useLogin } from "@/features/auth/hooks/use-login"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -12,19 +11,17 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import { loginFormSchema, LoginFormValues } from "../schemas/login-form.schema"
+import { FormError } from "@/components/form/form-error"
 
 export const LoginForm = () => {
-  const form = useForm<LoginDto>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+  const form = useForm<LoginFormValues>({
+    resolver: zodResolver(loginFormSchema),
   })
 
   const { mutate: login, isPending, error } = useLogin()
 
-  const onSubmit = (data: LoginDto) => {
+  const onSubmit = (data: LoginFormValues) => {
     login(data)
   }
 
@@ -40,7 +37,7 @@ export const LoginForm = () => {
                 Email<span className="text-destructive">*</span>
               </FormLabel>
               <FormControl>
-                <Input type="email" placeholder="you@example.com" {...field} />
+                <Input type="email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -56,14 +53,19 @@ export const LoginForm = () => {
                 Password<span className="text-destructive">*</span>
               </FormLabel>
               <FormControl>
-                <Input type="password" placeholder="••••••••" {...field} />
+                <Input type="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        {error && <p className="text-sm text-red-500">{error.message}</p>}
+        <FormError
+          error={error}
+          statusMessages={{
+            401: "Invalid credentials",
+          }}
+        />
 
         <Button type="submit" className="w-full" disabled={isPending}>
           {isPending ? "Logging in..." : "Login"}

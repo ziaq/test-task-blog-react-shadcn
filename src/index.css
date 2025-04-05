@@ -132,3 +132,13 @@
     @apply inline-flex items-center gap-1;
   }
 }
+
+@layer components {
+  button {
+    @apply cursor-pointer;
+  }
+
+  .tabs-trigger {
+    @apply cursor-pointer;
+  }
+}

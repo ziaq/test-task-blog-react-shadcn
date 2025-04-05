@@ -1,16 +1,18 @@
 import { ApiError } from "@/lib/errors/api-error"
 import { NetworkError } from "@/lib/errors/network-error"
 import { useAuthStore } from "@/store/auth-store"
+import { env } from "@/lib/env"
 
 interface ApiFetchOptions extends RequestInit {
   auth?: boolean
   withCredentials?: boolean
+  fullUrl?: boolean
 }
 
-export async function apiFetch<T>(
-  input: RequestInfo,
+export async function apiFetch(
+  input: string,
   init: ApiFetchOptions = {}
-): Promise<T> {
+): Promise<unknown> {
   try {
     const headers = new Headers(init.headers)
 
@@ -21,7 +23,9 @@ export async function apiFetch<T>(
       }
     }
 
-    const res = await fetch(input, {
+    const url = init.fullUrl ? input : `${env.VITE_API_URL}${input}`
+
+    const res = await fetch(url, {
       ...init,
       headers,
       credentials: init.withCredentials ? "include" : undefined,
@@ -32,6 +36,7 @@ export async function apiFetch<T>(
     }
 
     return await res.json()
+    
   } catch (error) {
     if (error instanceof ApiError) throw error
     throw new NetworkError()

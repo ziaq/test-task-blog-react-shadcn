@@ -8,15 +8,15 @@ export async function refreshAccessToken(): Promise<string> {
   const fingerprint = await getFingerprint()
   const body = refreshTokenSchema.parse({ fingerprint })
 
-  const data = await apiFetch<unknown>("/api/auth/refresh", {
+  const response = await apiFetch("/api/auth/refresh", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     withCredentials: true,
     body: JSON.stringify(body),
   })
 
-  const parsed = accessTokenResponseSchema.parse(data)
+  const validatedResponse = accessTokenResponseSchema.parse(response)
 
   scheduleTokenRefresh()
-  return parsed.accessToken
+  return validatedResponse.accessToken
 }

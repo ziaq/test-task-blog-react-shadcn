@@ -7,7 +7,7 @@ import { FormControl, FormItem, FormLabel, FormMessage } from "@/components/ui/f
 import { cn } from "@/lib/utils"
 import { ControllerRenderProps } from "react-hook-form"
 
-interface DatePickerFieldProps {
+type DatePickerFieldProps = {
   field: ControllerRenderProps<any, any>
   label: string
   disabledFuture?: boolean

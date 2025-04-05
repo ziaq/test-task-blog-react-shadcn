@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { registerSchema, RegisterDto } from "@/features/auth/dto/register.schema"
-import { useRegister } from "@/features/auth/hooks/use-register"
+import { updateUserSchema, UpdateUserDto } from "@/features/profile/dto/update-user.schema"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -14,17 +13,38 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { DatePickerField } from "@/components/form/date-picker-field"
+import { useUpdateProfile } from "../hooks/use-update-profile"
+import { useState } from "react"
 import { FormError } from "@/components/form/form-error"
+import { UserResponseDto } from "@/features/profile/dto/user-response.schema"
+import { mapUserToUpdateDto } from "@/features/profile/utils/map-user-to-update-dto"
 
-export const RegisterForm = () => {
-  const form = useForm<RegisterDto>({
-    resolver: zodResolver(registerSchema),
+type EditProfileFormProps = {
+  actualUserData: UserResponseDto
+}
+
+export const EditProfileForm = ({ actualUserData }: EditProfileFormProps) => {
+  const form = useForm<UpdateUserDto>({
+    resolver: zodResolver(updateUserSchema),
+    defaultValues: mapUserToUpdateDto(actualUserData)
   })
 
-  const { mutate: register, isPending, isSuccess, error } = useRegister()
+  const [isUpdated, setIsUpdated] = useState(false)
 
-  const onSubmit = (data: RegisterDto) => {
-    register(data)
+  const { mutate: update, isPending, error } = useUpdateProfile()
+
+  const onSubmit = (values: UpdateUserDto) => {
+    update(values, {
+      onSuccess: () => setIsUpdated(true),
+    })
+  }
+
+  if (isUpdated) {
+    return (
+      <p className="text-sm font-semibold text-center">
+        Profile updated successfully. You can close this window.
+      </p>
+    )
   }
 
   return (
@@ -35,79 +55,45 @@ export const RegisterForm = () => {
           name="firstName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
-                First name<span className="text-destructive">*</span>
-              </FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
+              <FormLabel>First name</FormLabel>
+              <FormControl><Input {...field} /></FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="lastName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
-                Last name<span className="text-destructive">*</span>
-              </FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
+              <FormLabel>Last name</FormLabel>
+              <FormControl><Input {...field} /></FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
-                Email<span className="text-destructive">*</span>
-              </FormLabel>
-              <FormControl>
-                <Input type="email" {...field} />
-              </FormControl>
+              <FormLabel>Email</FormLabel>
+              <FormControl><Input type="email" {...field} /></FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Password<span className="text-destructive">*</span>
-              </FormLabel>
-              <FormControl>
-                <Input type="password" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
         <FormField
           control={form.control}
           name="phone"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Phone</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
+              <FormControl><Input {...field} /></FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="birthDate"
@@ -115,16 +101,13 @@ export const RegisterForm = () => {
             <DatePickerField field={field} label="Birth date" disabledFuture />
           )}
         />
-
         <FormField
           control={form.control}
           name="about"
           render={({ field }) => (
             <FormItem>
               <FormLabel>About</FormLabel>
-              <FormControl>
-              <Textarea {...field} rows={2} />
-              </FormControl>
+              <FormControl><Textarea rows={2} {...field} /></FormControl>
               <FormMessage />
             </FormItem>
           )}
@@ -136,14 +119,9 @@ export const RegisterForm = () => {
             409: "Email is already in use",
           }}
         />
-        {isSuccess && (
-          <p className="text-sm text-green-600 text-center">
-            Account created successfully! You can now log in.
-          </p>
-        )}
 
         <Button type="submit" className="w-full" disabled={isPending}>
-          {isPending ? "Creating account..." : "Register"}
+          {isPending ? "Saving..." : "Save changes"}
         </Button>
       </form>
     </Form>

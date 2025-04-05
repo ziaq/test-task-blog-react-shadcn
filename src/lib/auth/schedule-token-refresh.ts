@@ -6,14 +6,15 @@ let timeoutId: NodeJS.Timeout | null = null
 export const scheduleTokenRefresh = () => {
   if (timeoutId) clearTimeout(timeoutId)
 
+  const { setAccessToken, deleteAccessToken } = useAuthStore.getState()
+
   timeoutId = setTimeout(async () => {
     try {
       const token = await refreshAccessToken()
-      useAuthStore.getState().setAccessToken(token)
+      setAccessToken(token)
       scheduleTokenRefresh()
     } catch {
-      useAuthStore.getState().clear()
-      useAuthStore.getState().openAuthModal()
+      deleteAccessToken()
     }
   }, 14 * 60 * 1000)
 }

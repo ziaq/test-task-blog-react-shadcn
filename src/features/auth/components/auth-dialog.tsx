@@ -16,13 +16,13 @@ import {
   TabsContent,
 } from "@/components/ui/tabs"
 
-export const AuthModal = () => {
-  const { showAuthModal, closeAuthModal } = useAuthStore.getState();
+export const AuthDialog = () => {
+  const { accessToken } = useAuthStore();
 
   const [tab, setTab] = useState<"login" | "register">("login")
 
   return (
-    <Dialog open={showAuthModal} onOpenChange={closeAuthModal}>
+    <Dialog open={!accessToken}>
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle className="text-center">
