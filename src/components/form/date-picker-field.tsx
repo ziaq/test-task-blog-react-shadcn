@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { ControllerRenderProps } from "react-hook-form"
 
 type DatePickerFieldProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   field: ControllerRenderProps<any, any>
   label: string
   disabledFuture?: boolean

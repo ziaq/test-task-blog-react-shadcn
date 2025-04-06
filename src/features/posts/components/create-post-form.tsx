@@ -1,0 +1,99 @@
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import {
+  createPostSchema,
+  type CreatePostDto,
+} from "@/features/posts/dto/create-post.schema"
+import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  FormControl,
+} from "@/components/ui/form"
+import { FileDropzone } from "@/components/form/file-dropzone"
+import { useCreatePost } from "@/features/posts/hooks/use-create-post"
+import { Spinner } from "@/components/ui/spinner"
+
+type Props = {
+  createPost: ReturnType<typeof useCreatePost>
+}
+
+export const CreatePostForm = ({ createPost }: Props) => {
+  const [files, setFiles] = useState<File[]>([])
+
+  const {
+    mutate,
+    isPending,
+    error,
+  } = createPost
+
+  const form = useForm<CreatePostDto>({
+    resolver: zodResolver(createPostSchema),
+    defaultValues: {
+      text: "",
+    },
+  })
+
+  const handleDrop = (acceptedFiles: File[]) => {
+    setFiles(acceptedFiles)
+  }
+
+  const onSubmit = (values: CreatePostDto) => {
+    const formData = new FormData()
+    formData.append("text", values.text)
+
+    files.forEach((file) => {
+      formData.append("file", file)
+    })
+
+    mutate(formData)
+  }
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <FormField
+          control={form.control}
+          name="text"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Post Text</FormLabel>
+              <FormControl>
+                <Textarea rows={4} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <div className="space-y-2">
+          <FormLabel>Upload up to 10 images</FormLabel>
+          <FileDropzone onDrop={handleDrop} maxFiles={10} />
+
+          {files.length > 0 && (
+            <ul className="text-sm text-muted-foreground space-y-1 mt-2 pl-2 list-disc">
+              {files.map((file, index) => (
+                <li key={index}>{file.name}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        {error && (
+          <p className="text-sm text-red-500 text-center">
+            Failed to create post. Please try again.
+          </p>
+        )}
+
+        <Button type="submit" className="w-full" disabled={isPending}>
+          {isPending ? <Spinner size={20} /> : "Publish Post"}
+        </Button>
+      </form>
+    </Form>
+  )
+}

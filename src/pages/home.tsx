@@ -1,6 +1,7 @@
 import { useAuthStore } from "@/store/auth-store"
-import { ProfileCard } from "@/features/profile/profile-card"
+import { ProfileCard } from "@/features/profile/components/profile-card"
 import { Spinner } from "@/components/ui/spinner"
+import { PostsCard } from "@/features/posts/components/posts-card"
 
 const HomePage = () => {
   const { accessToken } = useAuthStore()
@@ -16,7 +17,7 @@ const HomePage = () => {
   return (
     <main className="flex flex-col gap-6 items-center min-h-screen p-6 bg-muted/50">
       <ProfileCard />
-      {/* Посты пойдут ниже */}
+      <PostsCard />
     </main>
   )
 }

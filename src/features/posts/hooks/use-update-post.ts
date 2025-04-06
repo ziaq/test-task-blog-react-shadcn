@@ -1,0 +1,23 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { updatePost } from "../api/update-post"
+import { PostResponseDto } from "../dto/post-response.schema"
+import { POSTS_QUERY_KEY } from "../constants/query-keys"
+import { PostIdParamDto } from "../dto/post-id.param.schema"
+import { UpdatePostDto } from "../dto/update-post.schema"
+
+type UpdatePostMutationArgs = {
+  params: PostIdParamDto
+  body: UpdatePostDto
+  files?: File[]
+}
+
+export function useUpdatePost() {
+  const queryClient = useQueryClient()
+
+  return useMutation<PostResponseDto, Error, UpdatePostMutationArgs>({
+    mutationFn: updatePost,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: POSTS_QUERY_KEY })
+    },
+  })
+}

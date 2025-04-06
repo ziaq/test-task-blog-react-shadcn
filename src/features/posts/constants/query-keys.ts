@@ -1,0 +1,1 @@
+export const POSTS_QUERY_KEY = ["posts"] as const

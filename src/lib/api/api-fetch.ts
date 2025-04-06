@@ -31,12 +31,11 @@ export async function apiFetch(
       credentials: init.withCredentials ? "include" : undefined,
     })
 
-    if (!res.ok) {
-      throw new ApiError(res.status, "Request failed")
-    }
+    if (!res.ok) throw new ApiError(res.status, "Request failed")
+    if (res.status === 204) return null
 
     return await res.json()
-    
+
   } catch (error) {
     if (error instanceof ApiError) throw error
     throw new NetworkError()

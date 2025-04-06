@@ -41,12 +41,20 @@ export const FileDropzone = ({ onDrop, maxFiles }: FileDropzoneProps) => {
       )}
     >
       <input {...getInputProps()} />
-      <p className="text-sm text-muted-foreground">
-        {isDragActive
-          ? "Drop the file here..."
-          : multiple
-            ? `Drag & drop or click to upload up to ${maxFiles} images`
-            : "Drag & drop or click to upload an image"}
+      <p className="text-sm text-muted-foreground text-center">
+        {isDragActive ? (
+          "Drop the file here..."
+        ) : multiple ? (
+          <>
+            Drag & drop or click to upload images<br />
+            <span className="text-xs">PNG or JPG, max 5MB each</span>
+          </>
+        ) : (
+          <>
+            Drag & drop or click to upload an image<br />
+            <span className="text-xs">PNG or JPG, max 5MB</span>
+          </>
+        )}
       </p>
       {errorMessage}
     </div>
