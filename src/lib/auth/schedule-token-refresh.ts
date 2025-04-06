@@ -1,22 +1,18 @@
 import { refreshAccessToken } from "@/lib/auth/refresh-token"
-import { useAuthStore } from "@/store/auth-store"
 
 let timeoutId: NodeJS.Timeout | null = null
 
 export const scheduleTokenRefresh = () => {
   if (timeoutId) clearTimeout(timeoutId)
 
-  const { setAccessToken, deleteAccessToken } = useAuthStore.getState()
-
   timeoutId = setTimeout(async () => {
     try {
-      const token = await refreshAccessToken()
-      setAccessToken(token)
+      await refreshAccessToken()
       scheduleTokenRefresh()
-    } catch {
-      deleteAccessToken()
+    } catch(error) {
+      console.log(error)
     }
-  }, 14 * 60 * 1000)
+  }, 29 * 60 * 1000) // 29 min
 }
 
 export const cancelScheduleTokenRefresh = () => {

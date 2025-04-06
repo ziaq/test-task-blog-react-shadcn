@@ -3,20 +3,29 @@ import { refreshTokenSchema } from "@/lib/dto/refresh-token.schema"
 import { accessTokenResponseSchema } from "@/lib/dto/access-token-response.schema"
 import { scheduleTokenRefresh } from "@/lib/auth/schedule-token-refresh"
 import { apiFetch } from "@/lib/api/api-fetch"
+import { useAuthStore } from "@/store/auth-store"
+import { ApiError } from "@/lib/errors/api-error"
 
-export async function refreshAccessToken(): Promise<string> {
+export async function refreshAccessToken(): Promise<void> {
   const fingerprint = await getFingerprint()
   const body = refreshTokenSchema.parse({ fingerprint })
 
-  const response = await apiFetch("/api/auth/refresh", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true,
-    body: JSON.stringify(body),
-  })
+  const { setAccessToken, deleteAccessToken } = useAuthStore.getState();
 
-  const validatedResponse = accessTokenResponseSchema.parse(response)
+  try {
+    const response = await apiFetch("/auth/refresh", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+      body: JSON.stringify(body),
+    })
 
-  scheduleTokenRefresh()
-  return validatedResponse.accessToken
+    const { accessToken } = accessTokenResponseSchema.parse(response)
+
+    setAccessToken(accessToken)
+
+  } catch {
+    deleteAccessToken()
+    throw new ApiError(401, "Unauthorized and refresh failed")
+  }
 }

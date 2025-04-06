@@ -138,7 +138,7 @@ export const RegisterForm = () => {
         />
         {isSuccess && (
           <p className="text-sm text-green-600 text-center">
-            Account created successfully! You can now log in.
+            Account created successfully! You can now log in
           </p>
         )}
 

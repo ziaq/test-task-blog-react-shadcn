@@ -41,8 +41,8 @@ export const EditProfileForm = ({ actualUserData }: EditProfileFormProps) => {
 
   if (isUpdated) {
     return (
-      <p className="text-sm font-semibold text-center">
-        Profile updated successfully. You can close this window.
+      <p className="font-semibold text-center">
+        ✅ Profile updated successfully. You can close this window
       </p>
     )
   }

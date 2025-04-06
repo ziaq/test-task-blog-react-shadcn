@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Pencil } from "lucide-react" 
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { EditProfileForm } from "@/features/profile/components/edit-profile-form"
@@ -14,7 +15,10 @@ export const EditProfileDialog = ({ user }: Props) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+        <Button variant="outline" className="text-xs" size="sm">
+          <Pencil className="mr-2 h-4" />
+          Edit Profile
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <EditProfileForm actualUserData={user} />

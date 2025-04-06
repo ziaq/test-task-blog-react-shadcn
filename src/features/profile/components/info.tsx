@@ -6,7 +6,7 @@ type InfoProps = {
 
 export const Info = ({ user }: InfoProps) => {
   return (
-    <div>
+    <div className="ml-2">
       <h2 className="text-xl font-semibold">
         {user.firstName} {user.lastName}
       </h2>
