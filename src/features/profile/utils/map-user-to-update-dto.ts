@@ -1,5 +1,5 @@
-import { UserResponseDto } from "../dto/user-response.schema"
 import { UpdateUserDto } from "../dto/update-user.schema"
+import { UserResponseDto } from "../dto/user-response.schema"
 
 export function mapUserToUpdateDto(user: UserResponseDto): UpdateUserDto {
   return {

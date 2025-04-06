@@ -1,23 +1,24 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import {
-  createPostSchema,
-  type CreatePostDto,
-} from "@/features/posts/dto/create-post.schema"
+
+import { FileDropzone } from "@/components/form/file-dropzone"
 import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
 import {
   Form,
+  FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-  FormControl,
 } from "@/components/ui/form"
-import { FileDropzone } from "@/components/form/file-dropzone"
-import { useCreatePost } from "@/features/posts/hooks/use-create-post"
 import { Spinner } from "@/components/ui/spinner"
+import { Textarea } from "@/components/ui/textarea"
+import {
+  type CreatePostDto,
+  createPostSchema,
+} from "@/features/posts/dto/create-post.schema"
+import { useCreatePost } from "@/features/posts/hooks/use-create-post"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 type Props = {
   createPost: ReturnType<typeof useCreatePost>

@@ -1,10 +1,8 @@
 import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { registerSchema, RegisterDto } from "@/features/auth/dto/register.schema"
-import { useRegister } from "@/features/auth/hooks/use-register"
+
+import { DatePickerField } from "@/components/form/date-picker-field"
+import { FormError } from "@/components/form/form-error"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import {
   Form,
   FormControl,
@@ -13,8 +11,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { DatePickerField } from "@/components/form/date-picker-field"
-import { FormError } from "@/components/form/form-error"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { RegisterDto,registerSchema } from "@/features/auth/dto/register.schema"
+import { useRegister } from "@/features/auth/hooks/use-register"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 export const RegisterForm = () => {
   const form = useForm<RegisterDto>({

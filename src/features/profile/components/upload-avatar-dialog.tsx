@@ -1,8 +1,9 @@
-import { useState } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { FileDropzone } from "@/components/form/file-dropzone"
 import { Upload } from "lucide-react"
+import { useState } from "react"
+
+import { FileDropzone } from "@/components/form/file-dropzone"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Spinner } from "@/components/ui/spinner"
 import { useUploadAvatar } from "@/features/profile/hooks/use-upload-avatar"
 

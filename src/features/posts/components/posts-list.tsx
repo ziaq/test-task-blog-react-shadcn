@@ -1,12 +1,13 @@
-import { PostResponseDto } from "@/features/posts/dto/post-response.schema"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { format } from "date-fns"
 import { ru } from "date-fns/locale"
-import { env } from "@/lib/env"
-import { Button } from "@/components/ui/button"
 import { Trash } from "lucide-react"
-import { PostIdParamDto } from "@/features/posts/dto/post-id.param.schema"
+
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { EditPostDialog } from "@/features/posts/components/edit-post-dialog"
+import { PostIdParamDto } from "@/features/posts/dto/post-id.param.schema"
+import { PostResponseDto } from "@/features/posts/dto/post-response.schema"
+import { env } from "@/lib/env"
 
 type PostsListProps = {
   posts: PostResponseDto[]

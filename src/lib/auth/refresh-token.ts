@@ -1,9 +1,9 @@
-import { getFingerprint } from "@/lib/auth/fingerprint"
-import { refreshTokenSchema } from "@/lib/dto/refresh-token.schema"
-import { accessTokenResponseSchema } from "@/lib/dto/access-token-response.schema"
 import { apiFetch } from "@/lib/api/api-fetch"
-import { useAuthStore } from "@/store/auth-store"
+import { getFingerprint } from "@/lib/auth/fingerprint"
+import { accessTokenResponseSchema } from "@/lib/dto/access-token-response.schema"
+import { refreshTokenSchema } from "@/lib/dto/refresh-token.schema"
 import { ApiError } from "@/lib/errors/api-error"
+import { useAuthStore } from "@/store/auth-store"
 
 export async function refreshAccessToken(): Promise<void> {
   const fingerprint = await getFingerprint()

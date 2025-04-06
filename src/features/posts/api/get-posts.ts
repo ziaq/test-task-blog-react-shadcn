@@ -1,6 +1,6 @@
-import { apiFetchWithAuth } from "@/lib/api/api-fetch-with-auth"
-import { postsResponseSchema, PostsResponseDto } from "@/features/posts/dto/posts-response.schema"
 import { GetUserPostsQueryDto, getUserPostsQuerySchema } from "@/features/posts/dto/get-user-posts.query.schema"
+import { PostsResponseDto,postsResponseSchema } from "@/features/posts/dto/posts-response.schema"
+import { apiFetchWithAuth } from "@/lib/api/api-fetch-with-auth"
 
 export async function getPosts(params: GetUserPostsQueryDto): Promise<PostsResponseDto> {
   const validatedParams = getUserPostsQuerySchema.parse(params)

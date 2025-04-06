@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useLogin } from "@/features/auth/hooks/use-login"
+
+import { loginFormSchema, LoginFormValues } from "../schemas/login-form.schema"
+
+import { FormError } from "@/components/form/form-error"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import {
   Form,
   FormControl,
@@ -11,8 +12,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { loginFormSchema, LoginFormValues } from "../schemas/login-form.schema"
-import { FormError } from "@/components/form/form-error"
+import { Input } from "@/components/ui/input"
+import { useLogin } from "@/features/auth/hooks/use-login"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 export const LoginForm = () => {
   const form = useForm<LoginFormValues>({

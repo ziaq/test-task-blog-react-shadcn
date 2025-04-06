@@ -1,5 +1,5 @@
+import { UserResponseDto,userResponseSchema } from "@/features/profile/dto/user-response.schema"
 import { apiFetchWithAuth } from "@/lib/api/api-fetch-with-auth"
-import { userResponseSchema, UserResponseDto } from "@/features/profile/dto/user-response.schema"
 
 export async function uploadAvatar(file: File): Promise<UserResponseDto> {
   const formData = new FormData()

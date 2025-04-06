@@ -1,7 +1,7 @@
-import { apiFetchWithAuth } from "@/lib/api/api-fetch-with-auth"
 import { PostIdParamDto, postIdParamSchema } from "@/features/posts/dto/post-id.param.schema"
-import { updatePostSchema, UpdatePostDto } from "@/features/posts/dto/update-post.schema"
-import { postResponseSchema, PostResponseDto } from "@/features/posts/dto/post-response.schema"
+import { PostResponseDto,postResponseSchema } from "@/features/posts/dto/post-response.schema"
+import { UpdatePostDto,updatePostSchema } from "@/features/posts/dto/update-post.schema"
+import { apiFetchWithAuth } from "@/lib/api/api-fetch-with-auth"
 
 type UpdatePostApiParams = {
   params: PostIdParamDto

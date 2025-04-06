@@ -1,9 +1,9 @@
-import { getFingerprint } from "@/lib/auth/fingerprint"
 import { loginSchema } from "@/features/auth/dto/login.schema"
-import { accessTokenResponseSchema } from "@/lib/dto/access-token-response.schema"
-import { scheduleTokenRefresh } from "@/lib/auth/schedule-token-refresh"
-import { apiFetch } from "@/lib/api/api-fetch"
 import { LoginFormValues } from "@/features/auth/schemas/login-form.schema"
+import { apiFetch } from "@/lib/api/api-fetch"
+import { getFingerprint } from "@/lib/auth/fingerprint"
+import { scheduleTokenRefresh } from "@/lib/auth/schedule-token-refresh"
+import { accessTokenResponseSchema } from "@/lib/dto/access-token-response.schema"
 
 
 export async function login(input: LoginFormValues): Promise<string> {

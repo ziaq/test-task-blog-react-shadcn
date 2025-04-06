@@ -1,7 +1,7 @@
 import {
   Avatar as UIAvatar,
-  AvatarImage,
   AvatarFallback,
+  AvatarImage,
 } from "@/components/ui/avatar"
 import { env } from "@/lib/env"
 
@@ -15,7 +15,7 @@ export const Avatar = ({ fileName, fallback }: AvatarProps) => {
 
   return (
     <UIAvatar className="w-32 h-32">
-      <AvatarImage src={imageUrl} alt="Аватар пользователя" />
+      <AvatarImage src={imageUrl} alt="Аватар пользователя" className="object-cover" />
       <AvatarFallback>{fallback}</AvatarFallback>
     </UIAvatar>
   )

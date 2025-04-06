@@ -1,7 +1,7 @@
+import { env } from "@/lib/env"
 import { ApiError } from "@/lib/errors/api-error"
 import { NetworkError } from "@/lib/errors/network-error"
 import { useAuthStore } from "@/store/auth-store"
-import { env } from "@/lib/env"
 
 interface ApiFetchOptions extends RequestInit {
   auth?: boolean

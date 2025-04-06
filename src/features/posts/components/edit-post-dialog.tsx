@@ -1,4 +1,7 @@
+import { Pencil } from "lucide-react"
 import { useEffect, useState } from "react"
+
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -6,11 +9,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
 import { EditPostForm } from "@/features/posts/components/edit-post-form"
-import { Pencil } from "lucide-react"
-import { useUpdatePost } from "@/features/posts/hooks/use-update-post"
 import { PostResponseDto } from "@/features/posts/dto/post-response.schema"
+import { useUpdatePost } from "@/features/posts/hooks/use-update-post"
 
 type EditPostDialogProps = {
   post: PostResponseDto

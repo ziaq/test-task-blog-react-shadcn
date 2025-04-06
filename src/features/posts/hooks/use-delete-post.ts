@@ -1,6 +1,6 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { deletePost } from "@/features/posts/api/delete-post"
 import { POSTS_QUERY_KEY } from "@/features/posts/constants/query-keys"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 export function useDeletePost() {
   const queryClient = useQueryClient()

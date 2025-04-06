@@ -1,7 +1,4 @@
 import { useState } from "react"
-import { useAuthStore } from "@/store/auth-store"
-import { LoginForm } from "@/features/auth/components/login-form"
-import { RegisterForm } from "@/features/auth/components/register-form"
 
 import {
   Dialog,
@@ -11,10 +8,13 @@ import {
 } from "@/components/ui/dialog"
 import {
   Tabs,
+  TabsContent,
   TabsList,
   TabsTrigger,
-  TabsContent,
 } from "@/components/ui/tabs"
+import { LoginForm } from "@/features/auth/components/login-form"
+import { RegisterForm } from "@/features/auth/components/register-form"
+import { useAuthStore } from "@/store/auth-store"
 
 enum AuthTab {
   Login = "login",

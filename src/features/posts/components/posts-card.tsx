@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react"
 import { AlertCircle } from "lucide-react"
-import { usePostsQuery } from "@/features/posts/hooks/use-posts-query"
-import { PostsList } from "@/features/posts/components/posts-list"
-import { CreatePostDialog } from "@/features/posts/components/create-post-dialog"
+import { useEffect, useState } from "react"
+
+import { Alert, AlertDescription,AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
+import { CreatePostDialog } from "@/features/posts/components/create-post-dialog"
+import { PostsList } from "@/features/posts/components/posts-list"
+import { PostsSortSelect } from "@/features/posts/components/posts-sort-select"
 import { PostResponseDto } from "@/features/posts/dto/post-response.schema"
 import { useDeletePost } from "@/features/posts/hooks/use-delete-post"
-import { PostsSortSelect } from "@/features/posts/components/posts-sort-select"
+import { usePostsQuery } from "@/features/posts/hooks/use-posts-query"
 
 const LIMIT = 5
 

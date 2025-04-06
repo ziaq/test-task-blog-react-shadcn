@@ -1,15 +1,14 @@
 import { AlertCircle } from "lucide-react"
 
-import { useGetProfileQuery } from "@/features/profile/hooks/use-get-profile-query"
-import { Avatar } from "@/features/profile/components/avatar"
-import { Info } from "@/features/profile/components/info"
-import { Contacts } from "@/features/profile/components/contacts"
-import { EditProfileDialog } from "@/features/profile/components/edit-profile-dialog"
-import { UploadAvatarDialog } from "@/features/profile/components/upload-avatar-dialog"
-
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Spinner } from "@/components/ui/spinner"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Avatar } from "@/features/profile/components/avatar"
+import { Contacts } from "@/features/profile/components/contacts"
+import { EditProfileDialog } from "@/features/profile/components/edit-profile-dialog"
+import { Info } from "@/features/profile/components/info"
+import { UploadAvatarDialog } from "@/features/profile/components/upload-avatar-dialog"
+import { useGetProfileQuery } from "@/features/profile/hooks/use-get-profile-query"
 
 export const ProfileCard = () => {
   const { data: user, isLoading, error } = useGetProfileQuery()

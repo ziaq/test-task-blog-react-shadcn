@@ -1,6 +1,6 @@
-import { apiFetchWithAuth } from "@/lib/api/api-fetch-with-auth"
-import { userResponseSchema, UserResponseDto } from "@/features/profile/dto/user-response.schema"
 import { UpdateUserDto } from "@/features/profile/dto/update-user.schema"
+import { UserResponseDto,userResponseSchema } from "@/features/profile/dto/user-response.schema"
+import { apiFetchWithAuth } from "@/lib/api/api-fetch-with-auth"
 
 export async function updateProfile(input: UpdateUserDto): Promise<UserResponseDto> {
   const response = await apiFetchWithAuth("/profile", {

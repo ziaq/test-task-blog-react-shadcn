@@ -1,6 +1,6 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { createPost } from "@/features/posts/api/create-post"
 import { POSTS_QUERY_KEY } from "@/features/posts/constants/query-keys"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 export function useCreatePost() {
   const queryClient = useQueryClient()

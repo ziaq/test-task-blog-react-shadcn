@@ -1,9 +1,10 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { updatePost } from "../api/update-post"
-import { PostResponseDto } from "../dto/post-response.schema"
 import { POSTS_QUERY_KEY } from "../constants/query-keys"
 import { PostIdParamDto } from "../dto/post-id.param.schema"
+import { PostResponseDto } from "../dto/post-response.schema"
 import { UpdatePostDto } from "../dto/update-post.schema"
+
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 type UpdatePostMutationArgs = {
   params: PostIdParamDto

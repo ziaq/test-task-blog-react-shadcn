@@ -1,7 +1,7 @@
+import { AuthDialog } from "@/features/auth/components/auth-dialog"
+import HomePage from "@/pages/home"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
-import HomePage from "@/pages/home"
-import { AuthDialog } from "@/features/auth/components/auth-dialog"
 
 const queryClient = new QueryClient()
 

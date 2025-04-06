@@ -1,5 +1,5 @@
 import { RegisterDto } from "@/features/auth/dto/register.schema"
-import { userResponseSchema, UserResponseDto } from "@/features/profile/dto/user-response.schema"
+import { UserResponseDto,userResponseSchema } from "@/features/profile/dto/user-response.schema"
 import { apiFetch } from "@/lib/api/api-fetch"
 
 export async function register(input: RegisterDto): Promise<UserResponseDto> {
