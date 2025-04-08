@@ -113,7 +113,7 @@ export const RegisterForm = () => {
           control={form.control}
           name="birthDate"
           render={({ field }) => (
-            <DatePickerField field={field} label="Birth date" disabledFuture />
+            <DatePickerField field={field} label="Birth date" />
           )}
         />
 

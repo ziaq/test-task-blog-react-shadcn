@@ -100,7 +100,7 @@ export const EditProfileForm = ({ actualUserData }: EditProfileFormProps) => {
           control={form.control}
           name="birthDate"
           render={({ field }) => (
-            <DatePickerField field={field} label="Birth date" disabledFuture />
+            <DatePickerField field={field} label="Birth date" />
           )}
         />
         <FormField
