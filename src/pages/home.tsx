@@ -1,7 +1,7 @@
-import { Spinner } from "@/components/ui/spinner"
-import { PostsCard } from "@/features/posts/components/posts-card"
-import { ProfileCard } from "@/features/profile/components/profile-card"
-import { useAuthStore } from "@/store/auth-store"
+import { useAuthStore } from '@/modules/auth'
+import { PostsCard } from '@/modules/posts'
+import { ProfileCard } from '@/modules/profile'
+import { Spinner } from '@/shared/components/ui/spinner'
 
 const HomePage = () => {
   const { accessToken } = useAuthStore()

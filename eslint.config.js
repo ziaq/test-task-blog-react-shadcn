@@ -19,6 +19,16 @@ export default tseslint.config(
       'react-refresh': reactRefresh,
       'simple-import-sort': simpleImportSort,
     },
+    settings: {
+      'import/resolver': {
+        alias: {
+          map: [
+            ['@', './src'],
+          ],
+          extensions: ['.ts', '.tsx', '.js', '.jsx', '.css', '.json'],
+        },
+      },
+    },
     rules: {
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': [
@@ -30,17 +40,18 @@ export default tseslint.config(
         {
           groups: [
             // Side effect imports.
-            ['^\\u0000'],
-            // Node.js built-ins
-            ['^node:'],
-            // Packages. (Nest, third-party)
-            ['^(@nestjs|nestjs|rxjs|axios|express|mongoose|dotenv)(/.*|$)', '^\\w'],
-            // Parent imports. Put `..` last.
-            ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
-            // Other relative imports. Put same-folder and `.` last.
-            ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
-            // Style imports (if used).
-            ['^.+\\.s?css$'],
+            ["^\\u0000"],
+            // Node.js builtins prefixed with `node:`.
+            ["^node:"],
+            // Packages.
+            // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
+            ["^@?\\w"],
+            // Absolute imports and other imports such as Vue-style `@/foo`.
+            // Anything not matched in another group.
+            ["^"],
+            // Relative imports.
+            // Anything that starts with a dot.
+            ["^\\."],
           ],
         },
       ],

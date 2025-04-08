@@ -6,7 +6,7 @@
 
 Backend для этого проекта: [https://github.com/ziaq/test-task-blog-nestjs-postgres-jwt](https://github.com/ziaq/test-task-blog-nestjs-postgres-jwt)
 
-Это **тестовое задание** Frontend для блога — приложение с архитектурой Feature Oriented, написанное с использованием  React + Vite + Tanstack Query + Zustand + Shadcn.
+Это **тестовое задание** Frontend для блога — приложение с модульной архитектурой, написанное с использованием  React + Vite + Tanstack Query + Zustand + Shadcn.
 
 Реализовано:
 - Посты (создание, удаление, редактирование, добавление изображений)

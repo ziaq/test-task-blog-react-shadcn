@@ -1,0 +1,1 @@
+export { PostsCard } from './components/posts-card'
