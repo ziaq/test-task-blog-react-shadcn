@@ -46,6 +46,7 @@ export const PostsList = ({ posts, deletePost }: PostsListProps) => {
                     src={`${env.VITE_API_URL}/uploads/post-images/${image.filename}`}
                     alt="Post image"
                     className="w-[calc(25%-1rem)] max-w-[200px] rounded-md object-cover"
+                    loading="lazy"
                   />
                 ))}
               </div>
