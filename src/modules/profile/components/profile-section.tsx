@@ -1,17 +1,15 @@
-import { AlertCircle } from 'lucide-react'
-
-import { Alert, AlertDescription, AlertTitle } from '@/shared/components/ui/alert'
+import { LoadErrorAlert } from '@/shared/components/ui'
 import { Card, CardContent, CardHeader } from '@/shared/components/ui/card'
 import { Spinner } from '@/shared/components/ui/spinner'
 
-import { Avatar } from '../components/avatar'
-import { Contacts } from '../components/contacts'
-import { EditProfileDialog } from '../components/edit-profile-dialog'
-import { Info } from '../components/info'
-import { UploadAvatarDialog } from '../components/upload-avatar-dialog'
 import { useGetProfileQuery } from '../hooks/use-get-profile-query'
+import { Avatar } from './avatar'
+import { Contacts } from './contacts'
+import { EditProfileDialog } from './edit-profile-dialog'
+import { Info } from './info'
+import { UploadAvatarDialog } from './upload-avatar-dialog'
 
-export const ProfileCard = () => {
+export const ProfileSection = () => {
   const { data: user, isLoading, error } = useGetProfileQuery()
 
   if (isLoading || !user) {
@@ -25,13 +23,7 @@ export const ProfileCard = () => {
   if (error) {
     return (
       <div className="max-w-md mx-auto mt-6">
-        <Alert variant="destructive">
-          <AlertCircle className="h-5 w-5" />
-          <AlertTitle>Ошибка</AlertTitle>
-          <AlertDescription>
-            Не удалось загрузить профиль. Попробуйте позже.
-          </AlertDescription>
-        </Alert>
+        <LoadErrorAlert message='Failed to load profile. Try again later' />
       </div>
     )
   }

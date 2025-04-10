@@ -1,1 +1,1 @@
-export { PostsCard } from './components/posts-card'
+export { PostsSection } from './components/posts-section'

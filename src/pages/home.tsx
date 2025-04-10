@@ -1,6 +1,6 @@
 import { useAuthStore } from '@/modules/auth'
-import { PostsCard } from '@/modules/posts'
-import { ProfileCard } from '@/modules/profile'
+import { PostsSection } from '@/modules/posts'
+import { ProfileSection } from '@/modules/profile'
 import { Spinner } from '@/shared/components/ui/spinner'
 
 const HomePage = () => {
@@ -16,8 +16,8 @@ const HomePage = () => {
 
   return (
     <main className="flex flex-col gap-6 items-center min-h-screen p-6 bg-muted/50">
-      <ProfileCard />
-      <PostsCard />
+      <ProfileSection />
+      <PostsSection />
     </main>
   )
 }

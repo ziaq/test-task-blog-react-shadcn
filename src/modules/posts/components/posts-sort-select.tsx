@@ -6,7 +6,7 @@ import {
   SelectValue,
 } from '@/shared/components/ui'
 
-import { PostsSort } from '../components/posts-card'
+import { PostsSort } from './posts-section'
 
 type Props = {
   value: PostsSort

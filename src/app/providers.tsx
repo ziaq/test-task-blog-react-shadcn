@@ -1,10 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactNode } from "react"
 
-
-import { configureApi } from "../shared/api"
 import { useAuthStore } from "../modules/auth"
 import { refreshAccessToken } from "../modules/auth/utils/refresh-token"
+import { configureApi } from "../shared/api"
 
 const queryClient = new QueryClient()
 

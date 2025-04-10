@@ -19,23 +19,20 @@ import { type CreatePostDto,createPostSchema } from '../dto/create-post.schema'
 import { useCreatePost } from '../hooks/use-create-post'
 
 type Props = {
-  createPost: ReturnType<typeof useCreatePost>
+  createPost: ReturnType<typeof useCreatePost>['mutate']
+  isPending: boolean
+  error: ReturnType<typeof useCreatePost>['error']
 }
 
-export const CreatePostForm = ({ createPost }: Props) => {
+export const CreatePostForm = ({ 
+  createPost, 
+  isPending, 
+  error, 
+}: Props) => {
   const [files, setFiles] = useState<File[]>([])
-
-  const {
-    mutate,
-    isPending,
-    error,
-  } = createPost
 
   const form = useForm<CreatePostDto>({
     resolver: zodResolver(createPostSchema),
-    defaultValues: {
-      text: "",
-    },
   })
 
   const handleDrop = (acceptedFiles: File[]) => {
@@ -50,7 +47,7 @@ export const CreatePostForm = ({ createPost }: Props) => {
       formData.append("file", file)
     })
 
-    mutate(formData)
+    createPost(formData)
   }
 
   return (

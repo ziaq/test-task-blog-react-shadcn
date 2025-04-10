@@ -15,27 +15,36 @@ import { useCreatePost } from '../hooks/use-create-post'
 
 export const CreatePostDialog = () => {
   const [open, setOpen] = useState(false)
-  const createPost = useCreatePost()
+  const {
+    mutate,
+    isPending,
+    error,
+    isSuccess,
+  } = useCreatePost()
 
   useEffect(() => {
-    if (createPost.isSuccess) {
+    if (isSuccess) {
       setOpen(false)
     }
-  }, [createPost.isSuccess])
+  }, [isSuccess])
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size="sm" variant="secondary" className="border border-border shadow-sm transition-shadow h-9">
-          <Plus className="w-4 h-4 mr-2" />
-          Add Post
+          {isPending ? 'Creating...' : (
+            <>
+              <Plus className="w-4 h-4 mr-2" />
+              Add Post
+            </>
+          )}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Create New Post</DialogTitle>
         </DialogHeader>
-        <CreatePostForm createPost={createPost} />
+        <CreatePostForm createPost={mutate} isPending={isPending} error={error} />
       </DialogContent>
     </Dialog>
   )
