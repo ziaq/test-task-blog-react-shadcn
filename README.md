@@ -1,4 +1,4 @@
-## Тестовое задание на позицию Fullstack (Frontend часть)
+## Тестовое задание Fullstack (Frontend часть)
 <p align="center">
   <img src="./public/readme-pic-3.png" width="45%" />
   <img src="./public/readme-pic-2.png" width="45%" />
@@ -6,9 +6,10 @@
 
 Backend для этого проекта: [https://github.com/ziaq/test-task-blog-nestjs-postgres-jwt](https://github.com/ziaq/test-task-blog-nestjs-postgres-jwt)
 
-Это **тестовое задание** Frontend для блога — приложение с модульной архитектурой, написанное с использованием  React + Vite + Tanstack Query + Zustand + Shadcn.
+**Тестовое задание**  
+Frontend для блога — приложение с модульной архитектурой, написанное с использованием  React + Vite + Tanstack Query + Zustand + Shadcn.
 
-Реализовано:
+Включает в себя:
 - Посты (создание, удаление, редактирование, добавление изображений)
 - Профиль (создание, редактирование, загрузка аватара)
 - Аутентификация по JWT (access + refresh)
@@ -19,13 +20,7 @@ Backend для этого проекта: [https://github.com/ziaq/test-task-blo
 - Адаптивная верстка с использованием Tailwind CSS
 - Кэширование запросов и оптимистичное обновление с Tanstack Query
 
-Технологии:
-
-- React 19, Vite, TypeScript
-- Tailwind CSS, Shadcn UI
-- Zustand
-- Tanstack Query, React Hook Form
-- Zod, fingerprintjs
+Использовалось: React 19, Vite, TypeScript, Tailwind CSS, Shadcn UI, Zustand, Tanstack Query, React Hook Form, Zod, fingerprintjs
 
 ## Запуск проекта
 
