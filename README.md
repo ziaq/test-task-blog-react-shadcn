@@ -1,12 +1,5 @@
-## Тестовое задание Fullstack (Frontend часть)
-<p align="center">
-  <img src="./public/readme-pic-3.png" width="45%" />
-  <img src="./public/readme-pic-2.png" width="45%" />
-</p>
+## Тестовое задание
 
-Backend для этого проекта: [https://github.com/ziaq/test-task-blog-nestjs-postgres-jwt](https://github.com/ziaq/test-task-blog-nestjs-postgres-jwt)
-
-**Тестовое задание**  
 Frontend для блога — приложение с модульной архитектурой, написанное с использованием  React + Vite + Tanstack Query + Zustand + Shadcn.
 
 Включает в себя:
@@ -20,7 +13,7 @@ Frontend для блога — приложение с модульной арх
 - Адаптивная верстка с использованием Tailwind CSS
 - Кэширование запросов и оптимистичное обновление с Tanstack Query
 
-Использовалось: React 19, Vite, TypeScript, Tailwind CSS, Shadcn UI, Zustand, Tanstack Query, React Hook Form, Zod, fingerprintjs
+React 19, Vite, TypeScript, Tailwind CSS, Shadcn UI, Zustand, Tanstack Query, React Hook Form, Zod, fingerprintjs
 
 ## Запуск проекта
 
@@ -53,4 +46,4 @@ VITE_API_URL=http://localhost:3001
 npm run dev
 ```
 
-Приложенее будет доступно по адресу: [http://localhost:5171](http://localhost:5171 "http://localhost:5171")
+Приложенее будет доступно на: [http://localhost:5171](http://localhost:5171 "http://localhost:5171")
